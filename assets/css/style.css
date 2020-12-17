@@ -1,0 +1,36 @@
+body {
+
+    overflow-x: hidden !important;
+    background-color:#330D9A;
+    height: 100vh;
+    /* background: linear-gradient(0deg, rgba(42,11,125,1) 0%, rgba(69,0,252,1) 100%) !important; */
+}
+.box {
+
+    height: 80vh;
+    width: auto;
+    background-color: #2A0B7D;
+    /* border:2px solid white; */
+    margin-top: 10%;
+    border-radius: 20px;
+    box-shadow: -2px 2px 20px 1px rgba(0,0,0,0.5);
+}
+.box .score {
+
+    height: 15vh;
+    background-color: tomato;
+    width: 100%;
+}
+
+.box .gameBody {
+
+    height: 50vh;
+    background-color: violet;
+}
+
+.box .foot {
+
+    height: 15vh;
+    background-color: tan;
+    
+}
