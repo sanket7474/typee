@@ -88,11 +88,11 @@ body {
 @keyframes fadeOut {
 
     from {
-        transform: translateY(0px) ;
+        transform: translateY(0px) scale(1) ;
         opacity: 1;
     }
     to {
-        transform: translateY(-50px);
+        transform: translateY(-50px) scale(0.7);
         opacity: 0;
     }
 }

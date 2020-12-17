@@ -23,7 +23,8 @@ const start = function() {
 const astart = function() {
 
     btn.style.display = 'none';
-
+	data.style.animationName = 'reset';
+	
     head.style.animationName = 'fadeIn';
     head.style.animationDuration = '1s';
     head.style.animationTimingFunction = 'ease-int-out';
@@ -43,13 +44,15 @@ const anime = function() {
     counter += 1;
     if(counter == 5)
         clearInterval(int)
-    
-        head.style.animationName = 'fadeOut';
+	
+	
+    head.style.animationName = 'fadeOut';
     head.style.animationDelay = '0s';
-    head.style.animationDuration = '0.5s';
+	head.style.animationDuration = '0.5s';
     head.style.animationTimingFunction = 'ease-int-out';
+    head.style.animationPlayState = 'running';
     
-    setTimeout(one(subHead.innerText) , 300);
+	setTimeout(one , 200, subHead.innerText);
 
 }
 
@@ -63,7 +66,7 @@ const one = function(txt) {
     head.style.animationDuration = '0.3s';
     head.style.animationTimingFunction = 'ease-int-out';
 
-    setTimeout(two(arr[i++]) , 100);
+    setTimeout(two , 100, arr[i++]);
 }
 
 const two = function(txt) {
