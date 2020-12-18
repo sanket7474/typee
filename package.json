@@ -1,0 +1,25 @@
+{
+  "name": "typee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanket7474/typee.git"
+  },
+  "author": "Sanket",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanket7474/typee/issues"
+  },
+  "homepage": "https://github.com/sanket7474/typee#readme",
+  "devDependencies": {
+    "css-loader": "^5.0.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

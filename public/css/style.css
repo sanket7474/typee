@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap');
+
+
+body {
+
+    overflow-x: hidden !important;
+    background-color:#330D9A;
+    height: 100vh;
+    
+    /* background: linear-gradient(0deg, rgba(42,11,125,1) 0%, rgba(69,0,252,1) 100%) !important; */
+}
+.box {
+
+    height: 80vh;
+    width: auto;
+    background-color: #2A0B7D;
+    /* border:2px solid white; */
+    margin-top: 10%;
+    border-radius: 20px;
+    box-shadow: -2px 2px 20px 1px rgba(0,0,0,0.5);
+}
+.box .score {
+
+    height: 15vh;
+    background-color: tomato;
+    width: 100%;
+}
+
+.box .gameBody {
+
+    height: 50vh;
+    /* background-color: violet; */
+}
+
+.box .gameBody .data {
+
+    width: 70%;
+    height: 50vh;
+    /* background-color: chartreuse; */
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
+    animation-timing-function:ease-in-out;
+    
+}
+.box .gameBody .data .headi {
+    width: 100%;
+    /* background-color: crimson; */
+    height: 10vh;
+    margin-top: 10%;
+    font-size: 2.8rem;
+    display: block;
+    background-color: #2A0B7D;
+    font-family: 'Andika New Basic', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    z-index: 999999999;
+}
+.box .gameBody .data .subheadi {
+
+    width: 100%;
+    /* background-color: coral; */
+    margin-top: 5%;
+    height: 7vh;
+    font-size: 1.2rem;
+    color: lightgray;
+    font-family: 'Andika New Basic', sans-serif;
+    text-align: center;
+}
+@keyframes drag {
+
+    from {
+        transform: translateY(+100px) ;
+        font-size: 1.2em;
+        color: lightgray;
+        opacity: 1;
+    }
+    to {
+        transform: translateY(0px);
+        font-size: 2.8em;
+        color: white;
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+
+    from {
+        transform: translateY(0px) scale(1) ;
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-50px) scale(0.7);
+        opacity: 0;
+    }
+}
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes reset {
+
+    from {
+
+    }
+    to {
+
+    }
+}
+
+.box .gameBody .data .butn {
+    
+        text-decoration: none;
+        color: white;
+        width: 80%;
+        height: 7vh;
+        margin-top: 5%;
+        background: rgb(43,10,126);
+        background: linear-gradient(0deg, rgba(43,10,126,1) 0%, rgba(61,98,254,1) 100%);
+        box-shadow: -20px 30px 15px 0px rgba(0,0,0,0.2);
+        display: flex;
+        justify-content: center;
+        font-size: 1.8rem;
+        border-radius: 5px;
+        transition: all 0.2s;
+        margin-left: 10%;
+        cursor:pointer;
+}
+.butn:active {
+    
+    transform: translate(-2px , 2px) scale(0.95);
+} 
+.box .foot {
+
+    height: 15vh;
+    background-color: tan;
+
+}
+
