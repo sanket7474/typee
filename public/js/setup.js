@@ -6,8 +6,21 @@ const btn = document.getElementById('btn')
 
 let i = 0;
 let counter = 0;
-let arr = ["2","1","Go!","noose","airings","egyptians","insoul","oscinine","tali","premises","candidatures","undershoot","genitor","virls","beefsteak","piggery","paleoecologic","versts","vervains","nonallergic","segregations","kayakers","misstep","hypopneas","variers","freehand","expresser","partings","pottering","corpsman","jacking","somedeal","chantey","stationary","neeps","reshingles","disputable","peccancies","hagbut","unbathed","depict","uttered","glees","subscripts","charabancs","snakier","monarchy","intricate","foodies"]
+let arr = ["2","1","Go!"];
 let int = undefined 
+
+
+
+let socket = io.connect()
+
+socket.on('ready', function(data) {
+
+    console.log(data)
+    arr = arr.concat(data)
+
+})
+
+
 
 const start = function() {
 
@@ -91,3 +104,6 @@ const three = function() {
     subHead.style.animationTimingFunction = 'ease-int-out';
     
 }
+
+
+
