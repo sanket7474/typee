@@ -3,17 +3,18 @@ const head = document.getElementById('head')
 const subHead = document.getElementById('subHead')
 const data = document.getElementById('data')
 const btn = document.getElementById('btn')
-
-let i = 0;
-let counter = 0;
-let arr = ["2","1","Go!"];
-let int = undefined 
+const inp = document.getElementById('inp')
+      
+let counter = 0;            // to stop starting animation
+let arr = ["2","1","Go!"];  // to store words
+let i = 0;                  // array index
+let int = undefined         // interval
 
 
 
 let socket = io.connect()
 
-socket.on('ready', function(data) {
+socket.on('getWords', function(data) {
 
     console.log(data)
     arr = arr.concat(data)
@@ -48,6 +49,11 @@ const astart = function() {
     subHead.style.animationDuration = '1s';
     subHead.style.animationTimingFunction = 'ease-int-out';
     subHead.innerText = '3';
+
+    inp.style.animationName = 'fadeIn';
+    inp.style.animationDuration = '1s';
+    inp.style.animationTimingFunction = 'ease-int-out';
+    inp.style.display = 'block';
     int  = setInterval(anime , 1000)
 
     }
@@ -73,6 +79,8 @@ const anime = function() {
 const one = function(txt) {
 
     head.innerText = txt;
+    head.style.color = 'white';
+    inp.value = ""
 
     head.style.animationName = 'drag';
     head.style.animationDelay = '0s';
@@ -102,8 +110,24 @@ const three = function() {
     subHead.style.animationName = 'reset';
     subHead.style.animationDuration = '0.3s';
     subHead.style.animationTimingFunction = 'ease-int-out';
-    
+    inp.focus()
 }
 
 
+inp.addEventListener('keyup', function() {
+    
+    head.style.color = 'white';
 
+    if(inp.value.length == head.innerText.length) {
+        
+        if(inp.value === head.innerText) {
+
+            head.style.color = 'limegreen';
+
+            setTimeout(anime, 500)
+        }
+        else {
+            head.style.color = 'red';
+        }
+    }
+})

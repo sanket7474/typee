@@ -45,7 +45,7 @@ let server = http.createServer(function (request, response) {
         var words = fs.readFileSync(path.join(__dirname ,  'words.txt') , 'utf-8').toString();
 
         words = words.split(",")
-        socket.emit('ready' , words)
+        socket.emit('getWords' , words)
         
     })
 

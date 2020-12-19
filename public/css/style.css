@@ -147,3 +147,25 @@ body {
 
 }
 
+input[type="text"] {
+
+    display: none;
+    height: 7vh;
+    width: 60%;
+    margin-left: 20%;
+    background-color:#33089A;
+    border: 2px solid   #360BA1;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-family: 'Andika New Basic', sans-serif;
+    font-size: 1.7rem;
+    margin-top: 5%;
+    box-shadow: -4px 20px 30px 0px rgba(0,0,0,0.3);
+}
+
+input[type="text"]:focus {
+
+    outline: none;
+    border: 5px solid #390EA9;
+}
