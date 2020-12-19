@@ -117,17 +117,26 @@ const three = function() {
 inp.addEventListener('keyup', function() {
     
     head.style.color = 'white';
-
+    head.style.animationName = 'reset'
     if(inp.value.length == head.innerText.length) {
         
         if(inp.value === head.innerText) {
 
             head.style.color = 'limegreen';
 
+            head.style.animationName = 'jello-vertical'
+            head.style.animationDuration = '0.9s'
+            head.animationTimingFunction = 'ease'
+
             setTimeout(anime, 500)
         }
         else {
             head.style.color = 'red';
+            
+            head.style.animationName = 'wobble-hor-bottom'
+            head.style.animationDuration = '0.9s'
+            head.animationTimingFunction = 'ease'
+
         }
     }
 })
