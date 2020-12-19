@@ -4,19 +4,24 @@ const subHead = document.getElementById('subHead')
 const data = document.getElementById('data')
 const btn = document.getElementById('btn')
 const inp = document.getElementById('inp')
-      
+const bar1 = document.getElementById('bar1')
+const bar2 = document.getElementById('bar2')
+const timerElem = document.getElementById('timer')
+const box = document.getElementById('box')
+const bar = document.getElementById('bar')
 let counter = 0;            // to stop starting animation
 let arr = ["2","1","Go!"];  // to store words
 let i = 0;                  // array index
 let int = undefined         // interval
-
+let int2 = undefined        // interval 2
+let timer = 5               // timer counter
 
 
 let socket = io.connect()
 
 socket.on('getWords', function(data) {
 
-    console.log(data)
+    
     arr = arr.concat(data)
 
 })
@@ -106,11 +111,30 @@ const two = function(txt) {
 }
 
 const three = function() {
-
+    
     subHead.style.animationName = 'reset';
     subHead.style.animationDuration = '0.3s';
     subHead.style.animationTimingFunction = 'ease-int-out';
-    inp.focus()
+    
+
+    if(i > 3) {
+
+        inp.focus()
+
+        bar.style.display = 'block'
+        
+        bar1.style.animationName = 'bar1'
+        bar1.style.animationDuration = '5s'
+        bar1.style.animationPlayState = 'linear'
+
+        bar2.style.animationName = 'bar2'
+        bar2.style.animationDuration = '5s'
+        bar2.style.animationPlayState = 'linear'
+
+        int2 = setInterval(counterfn , 1000)
+    }
+
+    
 }
 
 
@@ -128,6 +152,7 @@ inp.addEventListener('keyup', function() {
             head.style.animationDuration = '0.9s'
             head.animationTimingFunction = 'ease'
 
+            reset()
             setTimeout(anime, 500)
         }
         else {
@@ -140,3 +165,22 @@ inp.addEventListener('keyup', function() {
         }
     }
 })
+
+const counterfn = function() {
+
+    if(timer < 0) {
+        
+        console.log('over')
+        box.style.display = 'none'
+        clearInterval(int2)        
+    }
+    timerElem.innerHTML = timer
+    timer -= 1;
+}
+const reset = function() {
+
+    timer = 5
+    clearInterval(int2)
+    bar1.style.animationName = 'reset'
+    bar2.style.animationName = 'reset'
+}
