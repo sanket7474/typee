@@ -15,7 +15,7 @@ let i = 0;                  // array index
 let int = undefined         // interval
 let int2 = undefined        // interval 2
 let timer = 5               // timer counter
-
+var time = new easytimer.Timer();
 
 let socket = io.connect()
 
@@ -124,20 +124,33 @@ const three = function() {
         bar.style.display = 'block'
         
         bar1.style.animationName = 'bar1'
-        bar1.style.animationDuration = '5s'
+        bar1.style.animationDuration = '6s'
         bar1.style.animationPlayState = 'linear'
 
         bar2.style.animationName = 'bar2'
-        bar2.style.animationDuration = '5s'
+        bar2.style.animationDuration = '6s'
         bar2.style.animationPlayState = 'linear'
 
-        int2 = setInterval(counterfn , 1000)
-    }
+        
+        time.start({countdown: true, startValues: {seconds: 5}});
 
-    
+        
+    }
 }
 
+time.addEventListener('secondsUpdated',function(e) {
 
+    var str = time.getTimeValues().toString().split(':')
+    timerElem.innerText  = str[2][1]
+})
+time.addEventListener('targetAchieved' , function(e){
+
+    box.style.display = 'none'
+})
+time.addEventListener('reset', function(e){
+
+    timerElem.innerText = '5'
+})
 inp.addEventListener('keyup', function() {
     
     head.style.color = 'white';
@@ -166,21 +179,10 @@ inp.addEventListener('keyup', function() {
     }
 })
 
-const counterfn = function() {
 
-    if(timer < 0) {
-        
-        console.log('over')
-        box.style.display = 'none'
-        clearInterval(int2)        
-    }
-    timerElem.innerHTML = timer
-    timer -= 1;
-}
 const reset = function() {
+    time.reset()
 
-    timer = 5
-    clearInterval(int2)
     bar1.style.animationName = 'reset'
     bar2.style.animationName = 'reset'
 }
