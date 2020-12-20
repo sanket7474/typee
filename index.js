@@ -21,6 +21,20 @@ const replaceTemplates = function(data) {
 
     return data
 }
+
+const shuffleArray = function(array) { 
+    for (var i = array.length - 1; i > 0; i--) {  
+     
+        // Generate random number  
+        var j = Math.floor(Math.random() * (i + 1)); 
+                     
+        var temp = array[i]; 
+        array[i] = array[j]; 
+        array[j] = temp; 
+    } 
+         
+    return array; 
+ }
 let server = http.createServer(function (request, response) {
   
 
@@ -45,6 +59,8 @@ let server = http.createServer(function (request, response) {
         var words = fs.readFileSync(path.join(__dirname ,  'words.txt') , 'utf-8').toString();
 
         words = words.split(",")
+
+        words = shuffleArray(words);
         socket.emit('getWords' , words)
         
     })
