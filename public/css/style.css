@@ -20,12 +20,18 @@ body {
     margin-top: 10%;
     border-radius: 20px;
     box-shadow: -2px 2px 20px 1px rgba(0,0,0,0.5);
+    
 }
 .box .score {
 
     height: 15vh;
-    background-color: tomato;
+    /* background-color: tomato; */
+    text-align: center;
+    font-size: 2em;
+    color:white;
     width: 100%;
+    padding: 2%;
+    
 }
 
 .box .gameBody {
@@ -81,6 +87,7 @@ body {
         margin-top: 5%;
         background: rgb(43,10,126);
         background: linear-gradient(0deg, rgba(43,10,126,1) 0%, rgba(61,98,254,1) 100%);
+        box-shadow: -10px 10px 20px 0px rgba(0,0,0,0.3);
         display: flex;
         justify-content: center;
         font-size: 1.8rem;
@@ -556,3 +563,19 @@ input[type="text"]:focus {
               transform: scale3d(1, 1, 1);
     }
   }
+
+  @keyframes pulsate-fwd {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.8);
+              transform: scale(1.8);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  
