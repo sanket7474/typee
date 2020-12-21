@@ -15,8 +15,7 @@ const replaceTemplates = function(data) {
     data = data.replace('{css1}' , css1)
     data = data.replace('{css2}' , css2)
     data = data.replace('{css3}' , css3)
-
-  
+ 
     data = data.replace('{script1}' , script1)
 
     return data
@@ -37,7 +36,6 @@ const shuffleArray = function(array) {
  }
 let server = http.createServer(function (request, response) {
   
-
     if(request.url == '/start') {
         
         console.log(path.join(__dirname , 'public' , 'index.html'))
@@ -59,12 +57,26 @@ let server = http.createServer(function (request, response) {
         var words = fs.readFileSync(path.join(__dirname ,  'words.txt') , 'utf-8').toString();
 
         words = words.split(",")
+        words.sort(function(a,b){
+            return a.length >= b.length
+        })
+        console.log(words)
+        var shortWords = words.slice(0,100)
+        var medWords = words.slice(100,200)
+        var longWords = words.slice(200,600)
+        
+        shortWords = shuffleArray(shortWords)
+        medWords = shuffleArray(medWords)
+        longWords = shuffleArray(longWords)
 
-        words = shuffleArray(words);
+        words = []
+
+        words = words.concat(shortWords , medWords , longWords)
+        console.log(words.length)
+        // words = shuffleArray(words);
         socket.emit('getWords' , words)
         
     })
-
 
     response.end()
 }).listen(7474);

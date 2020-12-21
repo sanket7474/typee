@@ -13,18 +13,25 @@ const score = document.getElementById('score')
 
 let counter = 0;            // to stop starting animation
 let arr = ["2","1","Go!"];  // to store words
-let i = 0;                  // array index
 let int = undefined         // interval
 let int2 = undefined        // interval 2
 let timer = 5               // timer counter
 var time = new easytimer.Timer();
 let b = true
 
+let c = '1'                   // index counter                   
+let i = 0;                  // array index for short words
+let j = 200;                // array index for medium words
+let k = 400                 // array index for long words
+let word = ''        
+
 let socket = io.connect()
 
 socket.on('getWords', function(data) {
- 
+    
     arr = arr.concat(data)
+
+    
 })
 
 
@@ -37,7 +44,6 @@ const start = function() {
     
     setTimeout(astart , 800)
 
-    
 }
 
 const astart = function() {
@@ -92,15 +98,30 @@ const one = function(txt) {
     head.style.animationDelay = '0s';
     head.style.animationDuration = '0.3s';
     head.style.animationTimingFunction = 'ease-in-out';
+    
 
-    setTimeout(two , 100, arr[i++]);
+    if(!b && c % 4 == 0 || c % 7 == 0) {
+    
+        if(c % 4 == 0 && c % 7 != 0)
+            word = arr[j++]
+        else if(c % 7 == 0)
+            word = arr[k++]
+        
+        c += 1;
+    }
+    else {
+        
+        word = arr[i++]
+        c += 1
+    }
+    // console.log(word)
+    setTimeout(two ,100, word);
 }
 
 const two = function(txt) {
 
-    console.log('yes');
+    console.log(txt);
     subHead.innerText = txt;
-    
     
     subHead.style.animationName = 'fadeIn';
     subHead.style.animationPlayState = 'running'
@@ -132,6 +153,7 @@ const three = function() {
             score.style.animationPlayState = 'ease-in-out'
         
             b = false
+            c = 1
         }
         time.start({countdown: true, startValues: {seconds: 5}});
 
