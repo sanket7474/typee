@@ -125,14 +125,7 @@ const three = function() {
         
             bar.style.display = 'block'
         
-            bar1.style.animationName = 'bar1'
-            bar1.style.animationDuration = '6s'
-            bar1.style.animationPlayState = 'linear'
-
-            bar2.style.animationName = 'bar2'
-            bar2.style.animationDuration = '6s'
-            bar2.style.animationPlayState = 'linear'
-
+           
             score.style.display = 'block'
             score.style.animationName = 'fadeIn'
             score.style.animationDuration = '0.8s'
@@ -142,7 +135,14 @@ const three = function() {
         }
         time.start({countdown: true, startValues: {seconds: 5}});
 
-        
+         bar1.style.animationName = 'bar1'
+            bar1.style.animationDuration = '6s'
+            bar1.style.animationPlayState = 'linear'
+
+            bar2.style.animationName = 'bar2'
+            bar2.style.animationDuration = '6s'
+            bar2.style.animationPlayState = 'linear'
+
     }
 }
 

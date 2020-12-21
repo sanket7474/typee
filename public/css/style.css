@@ -19,21 +19,35 @@ body {
     /* border:2px solid white; */
     margin-top: 10%;
     border-radius: 20px;
-    box-shadow: -2px 2px 20px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.5);
     
 }
 .box .score {
-
-    height: 15vh;
+    
+    height: 16vh;
     /* background-color: tomato; */
     text-align: center;
-    font-size: 2em;
+    font-size: 2.1em;
     color:white;
     width: 100%;
-    padding: 2%;
-    
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
-
+.box .score span {
+  
+  position: relative;
+  height: 100%;
+  width: 60%;
+  background-color: #F4B912;
+  box-shadow: 2px 0px 10px 0px rgba(0,0,0,0.5);
+  border-radius: 50%;
+  top:-25%;
+  padding-top: 6vh;
+  display:none;
+  font-weight:800;
+}
 .box .gameBody {
 
     height: 50vh;
@@ -103,31 +117,32 @@ body {
 .box .foot {
 
     height: 15vh;
-    background-color: tan;
+    /* background-color: tan; */
 
 }
 
 input[type="text"] {
 
     display: none;
-    height: 7vh;
+    height: 8vh;
     width: 60%;
     margin-left: 20%;
     background-color:#33089A;
-    border: 2px solid   #360BA1;
+    border: 5px solid #3C63FD;
     border-radius: 5px;
     text-align: center;
     color: white;
     font-family: 'Andika New Basic', sans-serif;
     font-size: 1.7rem;
     margin-top: 5%;
-    box-shadow: -4px 20px 30px 0px rgba(0,0,0,0.3);
+    /* border: 5px solid #280B74; */
+    /* box-shadow: -4px 20px 30px 0px rgba(0,0,0,0.3); */
 }
 
 input[type="text"]:focus {
 
     outline: none;
-    border: 5px solid #390EA9;
+    border: 5px solid #3C63FD;
 }
 .bar {
 
@@ -183,7 +198,25 @@ input[type="text"]:focus {
     font-family: 'Andika New Basic', sans-serif;
 }
 
+.blob {
 
+  position: fixed;
+  z-index: -1;
+  right: -15%;
+  top:-10%;
+  width: 50%;
+}
+
+.blob2 {
+
+
+  position: fixed;
+  z-index: -1;
+  left: -15%;
+  bottom: -50%;
+  width: 50%;
+  
+}
 @keyframes bar2 {
 
     from {
