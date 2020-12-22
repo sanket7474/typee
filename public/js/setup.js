@@ -10,6 +10,12 @@ const timerElem = document.getElementById('timer')
 const box = document.getElementById('box')
 const bar = document.getElementById('bar')
 const score = document.getElementById('score')
+const resDiv = document.getElementById('resDiv')
+const dispScore = document.getElementById('dispScore')
+const scoreHead = document.getElementById('scoreHead')
+const scoreCntxt = document.getElementById('scoreCntxt')
+
+let obj = [{head:'Woah, you are good', p:"Your best score so far is <span style='color:#F4B912'>{score}</span>, click on Try Again to retry beating your high score"}, {head:'BOOM!!!' , p:"New High Score <span style='color:#F4B912'>{score}</span>,<p> click on Try Again to create new high score </p> "}]
 
 let counter = 0;            // to stop starting animation
 let arr = ["2","1","Go!"];  // to store words
@@ -25,16 +31,18 @@ let j = 200;                // array index for medium words
 let k = 400                 // array index for long words
 let word = ''        
 
+let highScore = 0
 let socket = io.connect()
 
 socket.on('getWords', function(data) {
     
     arr = arr.concat(data)
 
-    
 })
+socket.on('getHighScore', function(hc) {
 
-
+    highScore = parseInt(hc)
+})
 
 const start = function() {
 
@@ -176,6 +184,28 @@ time.addEventListener('secondsUpdated',function(e) {
 time.addEventListener('targetAchieved' , function(e){
 
     box.style.display = 'none'
+
+    if(parseInt(score.innerText) > parseInt(highScore)) {
+
+        dispScore.innerText = '🔥'+score.innerText+'🔥'
+        scoreHead.innerText = obj[1].head
+        scoreCntxt.innerHTML = obj[1].p.replace('{score}', score.innerText)
+
+        socket.emit('saveScore', score.innerText)
+
+    }
+    else {
+
+        dispScore.innerText = '🔥'+score.innerText+'🔥'
+        scoreHead.innerText = obj[0].head
+        scoreCntxt.innerHTML = obj[0].p.replace('{score}', highScore)
+    }
+
+    resDiv.style.display = 'flex'
+
+    resDiv.style.animationName = 'slide-in-elliptic-top-fwd'
+    resDiv.style.animationDuration = '0.8s'
+    resDiv.style.animationTimingFunction = 'ease-in-out'
 })
 time.addEventListener('reset', function(e){
 

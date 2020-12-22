@@ -2,6 +2,8 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
+let score = 0
+
 
 const replaceTemplates = function(data) {
 
@@ -54,13 +56,16 @@ let server = http.createServer(function (request, response) {
     io.on('connection', function(socket) {
 
         console.log('connected!')
+        
         var words = fs.readFileSync(path.join(__dirname ,  'words.txt') , 'utf-8').toString();
-
+        
+        var highScore = fs.readFileSync(path.join(__dirname , 'score.txt')).toString()
+            
         words = words.split(",")
         words.sort(function(a,b){
             return a.length >= b.length
         })
-        console.log(words)
+        // console.log(words)
         var shortWords = words.slice(0,100)
         var medWords = words.slice(100,200)
         var longWords = words.slice(200,600)
@@ -76,7 +81,16 @@ let server = http.createServer(function (request, response) {
         // words = shuffleArray(words);
         socket.emit('getWords' , words)
         
-    })
+
+        socket.emit('getHighScore', highScore)
+        
+        socket.on('saveScore', function(score){
+
+            fs.writeFile(path.join(__dirname , 'score.txt'),score)
+        })
+            
+        })
+    
 
     response.end()
 }).listen(7474);
