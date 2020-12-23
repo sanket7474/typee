@@ -40,7 +40,7 @@ let server = http.createServer(function (request, response) {
   
     if(request.url == '/start') {
         
-        console.log(path.join(__dirname , 'public' , 'index.html'))
+        //console.log(path.join(__dirname , 'public' , 'index.html'))
         var data = fs.readFileSync(path.join(__dirname , 'public' , 'index.html') , 'utf-8');
         data = data.toString()
 
@@ -62,10 +62,11 @@ let server = http.createServer(function (request, response) {
         var highScore = fs.readFileSync(path.join(__dirname , 'score.txt')).toString()
             
         words = words.split(",")
-        words.sort(function(a,b){
-            return a.length >= b.length
+        
+		words = words.sort(function(a,b){
+           return a.length >= b.length
         })
-        // console.log(words)
+        //console.log(words)
         var shortWords = words.slice(0,100)
         var medWords = words.slice(100,200)
         var longWords = words.slice(200,600)
@@ -77,7 +78,7 @@ let server = http.createServer(function (request, response) {
         words = []
 
         words = words.concat(shortWords , medWords , longWords)
-        console.log(words.length)
+        //console.log(words.length)
         // words = shuffleArray(words);
         socket.emit('getWords' , words)
         
@@ -93,5 +94,7 @@ let server = http.createServer(function (request, response) {
     
 
     response.end()
-}).listen(7474);
+}).listen(process.env.PORT);
+
+//process.env.PORT
 

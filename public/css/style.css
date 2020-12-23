@@ -24,7 +24,7 @@ body {
 }
 .box .score {
     
-    height: 16vh;
+    height: 20%;
     /* background-color: tomato; */
     text-align: center;
     font-size: 2.1em;
@@ -134,7 +134,7 @@ input[type="text"] {
     color: white;
     font-family: 'Andika New Basic', sans-serif;
     font-size: 1.7rem;
-    margin-top: 6%;
+    margin-top: 7%;
     /* border: 5px solid #280B74; */
     /* box-shadow: -4px 20px 30px 0px rgba(0,0,0,0.3); */
 }
@@ -166,10 +166,10 @@ input[type="text"]:focus {
 .bar2  {
 
     display: inline-block;
-    width: 51%;
+    width: 100%;
     height: 100%;
     background-color: #230966;
-    margin-left: -3%;
+    margin-left: 0%;
     border-radius: 10px;
 
     
@@ -222,14 +222,14 @@ input[type="text"]:focus {
 .result {
 
   
-  height: 85vh;
+  height: 100%;
   width: 100%;
   /* background-color: #2A0B7D; */
   /* border:2px solid white; */
-  margin-top: 10vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
   /* border-radius: 20px; */
   box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.5);
-  
   display: none;
   align-items: center;
   flex-direction: column;
@@ -285,12 +285,50 @@ input[type="text"]:focus {
   box-shadow:0px 0px 10px 0px rgba(0,0,0,0.3);
   cursor: pointer;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+
+  input[type="text"] {
+
+    width: 100%;
+    margin: 0;
+    margin-top: 10vh;
+  }
+
+  .box {
+
+    margin-top: 15%;
+  }
+  .box .score {
+
+    height: 25%;
+  }
+
+  .blob {
+
+    top:-10%;
+    right:-30%;
+    width: 90%;
+  }
+  .blob2 {
+
+    left:-20%;
+    bottom:-10%;
+    width: 80%;
+  }
+  .result .butn { width: 60%; }
+}
+
+
+
 @keyframes bar2 {
 
     from {
 
         width: 100%;
-        background-color: #F4B912;
+        background-color:limegreen;
     }
     to {
 

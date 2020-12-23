@@ -4,7 +4,7 @@ const subHead = document.getElementById('subHead')
 const data = document.getElementById('data')
 const btn = document.getElementById('btn')
 const inp = document.getElementById('inp')
-const bar1 = document.getElementById('bar1')
+// const bar1 = document.getElementById('bar1')
 const bar2 = document.getElementById('bar2')
 const timerElem = document.getElementById('timer')
 const box = document.getElementById('box')
@@ -128,7 +128,7 @@ const one = function(txt) {
 
 const two = function(txt) {
 
-    console.log(txt);
+    // console.log(txt);
     subHead.innerText = txt;
     
     subHead.style.animationName = 'fadeIn';
@@ -158,21 +158,21 @@ const three = function() {
             score.style.display = 'block'
             score.style.animationName = 'fadeIn'
             score.style.animationDuration = '0.8s'
-            score.style.animationPlayState = 'ease-in-out'
+            score.style.animationTimingFunction = 'ease-in-out'
         
             b = false
             c = 1
         }
         time.start({countdown: true, startValues: {seconds: 5}});
 
-         bar1.style.animationName = 'bar1'
+        /*    bar1.style.animationName = 'bar1'
             bar1.style.animationDuration = '6s'
             bar1.style.animationPlayState = 'linear'
-
+        */
             bar2.style.animationName = 'bar2'
-            bar2.style.animationDuration = '6s'
-            bar2.style.animationPlayState = 'linear'
-
+            bar2.style.animationDuration = '5s'
+            bar2.style.animationTimingFunction = 'linear'
+        
     }
 }
 
@@ -213,6 +213,7 @@ time.addEventListener('reset', function(e){
 })
 inp.addEventListener('keyup', function() {
     
+    inp.value = inp.value.toLowerCase()
     head.style.color = 'white';
     head.style.animationName = 'reset'
     if(inp.value.length == head.innerText.length) {
@@ -245,8 +246,6 @@ inp.addEventListener('keyup', function() {
 
 const reset = function() {
     time.reset()
-
-    bar1.style.animationName = 'reset'
     bar2.style.animationName = 'reset'
 }
 
