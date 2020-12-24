@@ -14,8 +14,9 @@ const resDiv = document.getElementById('resDiv')
 const dispScore = document.getElementById('dispScore')
 const scoreHead = document.getElementById('scoreHead')
 const scoreCntxt = document.getElementById('scoreCntxt')
+const userName = document.getElementById('name')
 
-let obj = [{head:'Woah, you are good', p:"Your best score so far is <span style='color:#F4B912'>{score}</span>, click on Try Again to retry beating your high score"}, {head:'BOOM!!!' , p:"New High Score <span style='color:#F4B912'>{score}</span>,<p> click on Try Again to create new high score </p> "}]
+let obj = [{head:'Woah, you are good', p:"High Score so far is <span style='color:#F4B912'>{score}</span> by <span style='color:#F4B912'>{name}</span>, click on Try Again to retry beating a high score"}, {head:'BOOM!!!' , p:"<span style='color:#F4B912'>{name}</span> New High Score <span style='color:#F4B912'>{score}</span>,<p> click on Try Again to create new high score </p> "}]
 
 let counter = 0;            // to stop starting animation
 let arr = ["2","1","Go!"];  // to store words
@@ -25,7 +26,7 @@ let timer = 5               // timer counter
 var time = new easytimer.Timer();
 let b = true
 
-let c = '1'                   // index counter                   
+let c = -3                   // index counter                   
 let i = 0;                  // array index for short words
 let j = 200;                // array index for medium words
 let k = 400                 // array index for long words
@@ -41,22 +42,35 @@ socket.on('getWords', function(data) {
 })
 socket.on('getHighScore', function(hc) {
 
-    highScore = parseInt(hc)
+    highScore = hc.split(' ')
 })
 
 const start = function() {
 
-    data.style.animationName = 'fadeOut';
-    data.style.animationDuration = '0.8s';
-    data.style.animationTimingFunction = 'ease-in-out';
+    userName.style.animationName = 'reset'
     
-    setTimeout(astart , 800)
+    if( userName.value != '' && isNaN(userName.value) ) {
+        data.style.animationName = 'fadeOut';
+        data.style.animationDuration = '0.8s';
+        data.style.animationTimingFunction = 'ease-in-out';
+        setTimeout(astart , 800)
+    }
+    else {
+
+        userName.placeholder = 'Enter Valid Name'
+        userName.style.animationName = 'wobble-hor-bottom'
+        userName.style.animationDuration = '0.8s'
+        userName.style.animationTimingFunction = 'ease'
+        userName.style.border = '5px solid red'
+    }
 
 }
 
 const astart = function() {
 
     btn.style.display = 'none';
+    userName.style.display = 'none'
+
 	data.style.animationName = 'reset';
 	
     head.style.animationName = 'fadeIn';
@@ -185,20 +199,23 @@ time.addEventListener('targetAchieved' , function(e){
 
     box.style.display = 'none'
 
-    if(parseInt(score.innerText) > parseInt(highScore)) {
+    if(parseInt(score.innerText) > parseInt(highScore[1])) {
 
         dispScore.innerText = '🔥'+score.innerText+'🔥'
         scoreHead.innerText = obj[1].head
-        scoreCntxt.innerHTML = obj[1].p.replace('{score}', score.innerText)
-
-        socket.emit('saveScore', score.innerText)
+        obj[1].p = obj[1].p.replace('{score}', score.innerText)
+        obj[1].p = obj[1].p.replace('{name}', userName.value)
+        scoreCntxt.innerHTML = obj[1].p
+        socket.emit('saveScore', userName.value+' '+score.innerText)
 
     }
     else {
 
         dispScore.innerText = '🔥'+score.innerText+'🔥'
         scoreHead.innerText = obj[0].head
-        scoreCntxt.innerHTML = obj[0].p.replace('{score}', highScore)
+        obj[0].p = obj[0].p.replace('{name}', highScore[0])
+        obj[0].p = obj[0].p.replace('{score}', highScore[1])
+        scoreCntxt.innerHTML = obj[0].p
     }
 
     resDiv.style.display = 'flex'

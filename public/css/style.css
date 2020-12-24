@@ -9,6 +9,9 @@ body {
     background-color:#330D9A;
     height: 100vh;
     
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     /* background: linear-gradient(0deg, rgba(42,11,125,1) 0%, rgba(69,0,252,1) 100%) !important; */
 }
 .box {
@@ -123,7 +126,7 @@ body {
 
 input[type="text"] {
 
-    display: none;
+   
     height: 8vh;
     width: 60%;
     margin-left: 20%;

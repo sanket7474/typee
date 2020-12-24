@@ -4,6 +4,20 @@ var path = require('path');
 
 let score = 0
 
+const bSort = function(arr) {
+
+    for(var i = 0 ; i < arr.length -1 ; i++) 
+        for(var j = 0 ; j < arr.length - i - 1 ; j++) 
+            
+        if(arr[j].length > arr[j+1].length) {
+
+                var temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+    
+            return arr
+}
 
 const replaceTemplates = function(data) {
 
@@ -63,10 +77,8 @@ let server = http.createServer(function (request, response) {
             
         words = words.split(",")
         
-		words = words.sort(function(a,b){
-           return a.length >= b.length
-        })
-        //console.log(words)
+		words = bSort(words)
+        
         var shortWords = words.slice(0,100)
         var medWords = words.slice(100,200)
         var longWords = words.slice(200,600)
@@ -74,9 +86,10 @@ let server = http.createServer(function (request, response) {
         shortWords = shuffleArray(shortWords)
         medWords = shuffleArray(medWords)
         longWords = shuffleArray(longWords)
-
+        
+        // console.log(longWords)
         words = []
-
+        
         words = words.concat(shortWords , medWords , longWords)
         //console.log(words.length)
         // words = shuffleArray(words);
@@ -86,15 +99,18 @@ let server = http.createServer(function (request, response) {
         socket.emit('getHighScore', highScore)
         
         socket.on('saveScore', function(score){
-
-            fs.writeFile(path.join(__dirname , 'score.txt'),score)
+            
+            fs.writeFile(path.join(__dirname , 'score.txt'),score, (err)=> {
+                if(err) throw err;
+                
+            })
         })
             
         })
     
 
     response.end()
-}).listen(process.env.PORT);
+}).listen(7474);
 
 //process.env.PORT
 
