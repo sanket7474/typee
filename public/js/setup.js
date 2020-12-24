@@ -42,7 +42,7 @@ socket.on('getWords', function(data) {
 })
 socket.on('getHighScore', function(hc) {
 
-    highScore = hc.split(' ')
+    highScore = hc.split(',')
 })
 
 const start = function() {
@@ -206,7 +206,7 @@ time.addEventListener('targetAchieved' , function(e){
         obj[1].p = obj[1].p.replace('{score}', score.innerText)
         obj[1].p = obj[1].p.replace('{name}', userName.value)
         scoreCntxt.innerHTML = obj[1].p
-        socket.emit('saveScore', userName.value+' '+score.innerText)
+        socket.emit('saveScore', userName.value+','+score.innerText)
 
     }
     else {
